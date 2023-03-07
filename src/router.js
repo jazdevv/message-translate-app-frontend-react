@@ -3,7 +3,7 @@ import App from './App'
 import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
 import MainPage from './pages/mainPage'
-
+import Chat from "./components/UserChat";
 // REACT ROUTER
 const router = createBrowserRouter([
     {
@@ -22,7 +22,13 @@ const router = createBrowserRouter([
     },
     {
         path:'/',
-        element: <MainPage/>
+        element: <MainPage/>,
+        children: [
+          {
+            path: "chat/:id",
+            element: <Chat/>,
+        },
+        ]
     }
     
 ]);
