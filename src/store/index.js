@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {serverUrlSlice} from './slices/serverUrl'
+import { serverUrlSlice } from './slices/serverUrl'
 import { chatRoomsSlice } from './slices/chatRoomsSlice'
-import { UserDataApi, useGetLoggUserDataQuery } from './apis/UserDataApi'
+import { isLoggedSlice } from './slices/isLoggedSlice'
+import { UserDataApi } from './apis/UserDataApi'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 
 const store = configureStore({
   reducer: {
     serverUrl: serverUrlSlice.reducer,
     rooms: chatRoomsSlice.reducer,
+    isLogged: isLoggedSlice.reducer,
     [UserDataApi.reducerPath]:UserDataApi.reducer
   },
   middleware:(getDefaultMiddleware)=>
@@ -15,6 +17,7 @@ const store = configureStore({
 })
 
 setupListeners(store.dispatch)
-
+export { initialSetRooms } from './slices/chatRoomsSlice'
+export { setIsLogged } from './slices/isLoggedSlice'
 export * from './apis/UserDataApi'
 export { store }

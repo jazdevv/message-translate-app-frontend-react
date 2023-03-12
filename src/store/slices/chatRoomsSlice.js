@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const chatRoomsSlice = createSlice({
     name:"rooms",
-    initialState:[{
+    initialState:{
         rooms: [],
         loading: true
-    }],
+    },
     reducers:{
         initialSetRooms: (state,action)=>{
             state.rooms = action.payload;
@@ -14,4 +14,5 @@ const chatRoomsSlice = createSlice({
     }
 })
 
+export const { initialSetRooms } = chatRoomsSlice.actions;
 export {chatRoomsSlice}
