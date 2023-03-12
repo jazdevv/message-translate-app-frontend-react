@@ -1,12 +1,15 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { setIsLogged } from "../store";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 import axios from "axios"
 
 function LoginPage (){
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-
+    const dispatch = useDispatch();
     const navigate = useNavigate()
 
     const serverUrl = useSelector((state)=> state.serverUrl)
@@ -24,21 +27,15 @@ function LoginPage (){
     const handleForm = async (event) => {
         event.preventDefault();
         axios.post(`${serverUrl}/auth/login`,{email,password}, {withCredentials: true}).then((res)=>{
-
-          navigate('/') 
+            //set redux isLogged state to true if login suucces
+            dispatch(setIsLogged(true));
+            //add the cookies to browser aplicacion 
+            Cookies.set('acces_token',res.data.acces_token)
+            navigate('/');
         }
         ).catch((err)=>{
             console.log(err)
         });
-        // await fetch(`${serverUrl}/auth/login`,{
-        //     method:'POST',
-        //     headers:{'Content-Type':'application/json'},
-        //     credentials: 'include',
-        //     body: JSON.stringify({
-        //         email,
-        //         password
-        //     })
-        // })
         
         
     } 
