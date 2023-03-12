@@ -1,12 +1,15 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
+import { setIsLogged } from "../store";
+import { useDispatch } from "react-redux";
 import axios from "axios"
 
 function SignupPage(){
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [username,setUsername] = useState('')
+    const dispatch = useDispatch();
 
     const navigate = useNavigate()
 
@@ -27,8 +30,8 @@ function SignupPage(){
     const handleForm = async (event) => {
         event.preventDefault();
         axios.post(`${serverUrl}/auth/login`,{email,password,username}, {withCredentials: true}).then((res)=>{
-
-          navigate('/') 
+            dispatch(setIsLogged(true));
+            navigate('/'); 
         }
         ).catch((err)=>{
             console.log(err)
