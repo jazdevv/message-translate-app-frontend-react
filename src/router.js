@@ -5,6 +5,8 @@ import SignupPage from './pages/signupPage';
 import MainPage from './pages/mainPage'
 import Chat from "./components/UserChat";
 import LoggedApp from "./LoggedApp";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 // REACT ROUTER
 const router = createBrowserRouter([
     {
@@ -23,7 +25,9 @@ const router = createBrowserRouter([
     },
     {
       path:'/',
-      element: <LoggedApp/>,
+      element: <ProtectedRoute>
+          <LoggedApp/>
+        </ProtectedRoute>,
       children:[
         {
           path:'/',
