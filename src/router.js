@@ -34,7 +34,7 @@ const router = createBrowserRouter([
           element: <MainPage/>,
           children: [
           {
-            path: "chat/:id",
+            path: "chat",
             element: <Chat/>,
           },
         ]}
