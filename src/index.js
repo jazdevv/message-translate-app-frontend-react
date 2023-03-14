@@ -16,7 +16,6 @@ root.render(
     <Provider store={store}>
         <AppStart>
             <RouterProvider router={router}/>   
-        </AppStart>
-        
+        </AppStart> 
     </Provider>
 )
