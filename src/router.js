@@ -3,7 +3,7 @@ import PublicApp from './PublicApp'
 import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
 import MainPage from './pages/mainPage'
-import Chat from "./components/UserChat";
+import Chat from "./components/UserChatRoom";
 import LoggedApp from "./LoggedApp";
 import ProtectedRoute from "./components/ProtectedRoute";
 
