@@ -9,7 +9,7 @@ function MyProfile({onClose}){
     const [loggUser] = useLoggUser();
     //profile data
     const [username,setUsername] = useState(loggUser.username);
-    const [status,setStatus] = useState('')
+    const [status,setStatus] = useState(loggUser.status)
     //image to show
     const [profileImage, setProfileImage] = useState(`https://messaging-app-images.s3.eu-west-3.amazonaws.com/${loggUser.profileImage}`)
     //image to add to the request
@@ -38,8 +38,26 @@ function MyProfile({onClose}){
     }
 
     const handleChangeStatus = (event)=>{
+        if(event.target.value.length>100){
+            return
+        }
         setStatus(event.target.value)
     }
+
+    let statusColor;
+    if(status.length < 71){
+        console.log('green')
+        statusColor ='text-green-500 font-bold'
+    }
+    if(  status.length > 70 && 90 > status.length){
+        console.log("orange")
+        statusColor ='text-orange-500 font-bold'
+    }
+    if(status.length > 89 && 101 > status.length){
+        console.log('red')
+        statusColor ='text-red-500 font-bold'
+    }
+
     return <>
             <div className="flex justify-between w-full items-center">
                 <GoX className={'cursor-pointer'} onClick={onClose}/>                   
@@ -47,10 +65,10 @@ function MyProfile({onClose}){
             </div>
             <form className="flex flex-col gap-6 ">
                 <div className="flex justify-center h-48 w-48 mx-auto">
-                    <input ref={File} onChange={addPhoto}className="hidden" type="file"/>
+                    <input ref={File} onChange={addPhoto}className="hidden" type="file" accept="image/*"/>
                     <div onClick={handleClick} className="h-48 flex flex-col gap-2 relative cursor-pointer">
                         <div className="absolute inset-0 bg-black opacity-50 rounded-full"></div>
-                        <img className="h-full w-full  rounded-full cursor-pointer"  src={profileImage}/>
+                        <img className="h-full w-full  rounded-full cursor-pointer object-cover"  src={profileImage}/>
                         <div className="absolute translate-y-14 translate-x-14 bg-black rounded-full p-2 opacity-50">
                             {/* <svg xmlns="http://www.w3.org/2000/svg" className=" w-16 h-16  opacity-100" fill="none" viewBox="0 0 24 24" strokWidth="1.5" stroke="white">
                                 <path strokLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
@@ -71,7 +89,7 @@ function MyProfile({onClose}){
                     <input value={username} onChange={handleChangeUsername} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required/>
                     </div>
                     <div className="mb-6">
-                    <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                    <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status <span className={statusColor}>{100-status.length}</span></label>
                     <input value={status} onChange={handleChangeStatus} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required/>
                     </div>
                     <div className="mb-6">

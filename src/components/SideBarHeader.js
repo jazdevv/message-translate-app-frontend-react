@@ -20,9 +20,9 @@ function SideBarHeader(){
         ModalComponent = <Modal onClose={ModalClose} ><MyProfile onClose={ModalClose}/></Modal>
     }
     
-    return <div className="flex bg-gray-200 justify-center md:justify-between items-center  border-b border-gray-300 py-2 px-4 h-16">
-                <div className="h-full hidden md:block">
-                    <img className="rounded-full h-full border border-gray-300" src={`https://messaging-app-images.s3.eu-west-3.amazonaws.com/${loggUser.profileImage}`}/>
+    return <div className="flex bg-gray-200 justify-center md:justify-between items-center  border-b border-gray-300 py-2 px-4 h-18">
+                <div className="h-14 w-14 hidden md:block">
+                    <img className="rounded-full h-full border border-gray-500 object-cover	" src={`https://messaging-app-images.s3.eu-west-3.amazonaws.com/${loggUser.profileImage}`}/>
                 </div>
                 <div className="flex gap-4">
                     <svg onClick={()=>{setOpenModalName('settings')}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 md:w-6 md:h-6 cursor-pointer">
