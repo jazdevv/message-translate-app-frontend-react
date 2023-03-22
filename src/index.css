@@ -22,3 +22,7 @@
   .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
     border-radius: 0.25rem;
   }
+
+  .animate-css{
+    margin: auto; display: block; shape-rendering: auto
+  }
