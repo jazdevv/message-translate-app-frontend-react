@@ -16,10 +16,12 @@ function ChatInput({socket,chatRoomid}){
     //input message handle functions
 
     const handleChange = (event) =>{
+      
         setMessage(event.target.value);
     }   
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+         event.preventDefault();
         let data = {};
         if(message){
          data.message = message;
@@ -62,7 +64,9 @@ function ChatInput({socket,chatRoomid}){
              </svg>
           </button>
           </span>
-       <input value={message} onChange={handleChange} type="text" placeholder="Write your message!" className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"/>
+          <form onSubmit={handleSubmit} className="w-full">
+            <input value={message} onChange={handleChange} type="text" placeholder="Write your message!" className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"/>
+          </form>
        <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
           
           <button type="button" className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
