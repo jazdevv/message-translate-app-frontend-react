@@ -1,8 +1,8 @@
 import { useLoggUser } from "../hooks/useLoggUser"
 import { useState } from "react";
 import Modal from "./Modal";
-import { GoX } from "react-icons/go";
 import MyProfile from "./MyProfile";
+import MyConfig from "./MyConfig";
 
 function SideBarHeader(){
     //logg user 
@@ -15,7 +15,7 @@ function SideBarHeader(){
 
     let ModalComponent;
     if(openModalName==='settings'){
-        ModalComponent = <Modal onClose={ModalClose} actionBar={<GoX className={'cursor-pointer'} onClick={ModalClose}/>}>Settings</Modal>
+        ModalComponent = <Modal onClose={ModalClose} ><MyConfig onClose={ModalClose}/></Modal>
     }else if(openModalName==='myProfile'){
         ModalComponent = <Modal onClose={ModalClose} ><MyProfile onClose={ModalClose}/></Modal>
     }
