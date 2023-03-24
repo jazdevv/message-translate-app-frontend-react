@@ -3,8 +3,11 @@ import { useLoggUser } from "../hooks/useLoggUser"
 import { GoX } from "react-icons/go";
 import { useServerURL } from "../hooks/useServerURL";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { UserDataApi } from "../store";
 
 function MyProfile({onClose}){
+    const dispatch = useDispatch();
     const serverUrl = useServerURL();
     const [loggUser] = useLoggUser();
     //profile data
@@ -30,7 +33,7 @@ function MyProfile({onClose}){
         formData.append('username',username);
         formData.append('status',status);
         formData.append('file',updatedProfileImage)
-        axios.post(`${serverUrl}/auth/UpdateMe`, formData , {withCredentials: true,headers:{"Content-Type":"multipart/form-data"}}).then(onClose())
+        axios.post(`${serverUrl}/auth/UpdateMe`, formData , {withCredentials: true,headers:{"Content-Type":"multipart/form-data"}}).then(()=>{onClose();dispatch(UserDataApi.util.invalidateTags(['resetUser']))})
     }
 
     const handleChangeUsername = (event)=>{

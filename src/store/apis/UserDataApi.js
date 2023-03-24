@@ -6,9 +6,11 @@ const UserDataApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:'http://127.0.0.1:3001',credentials:"include"}),
     endpoints: (builder)=>({
         getLoggUserData: builder.query({
-            query:()=>'/auth/me'
+            query:()=>'/auth/me',
+            providesTags:()=>['resetUser']
         })
-    })
+    }),
+    tagTypes:['resetUser']
 })
 
 export const {useGetLoggUserDataQuery} = UserDataApi

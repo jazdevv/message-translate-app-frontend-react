@@ -5,8 +5,10 @@ import { CountryDropdown } from 'react-country-region-selector';
 import Flag from 'react-world-flags'
 import axios from "axios";
 import { useServerURL } from "../hooks/useServerURL";
-
+import { UserDataApi } from "../store";
+import { useDispatch } from "react-redux";
 function MyConfig({onClose}){
+    const dispatch = useDispatch();
     const [loggUser] = useLoggUser();
     const serverUrl = useServerURL();
     const [translateMessages, setTranslateMessages] = useState(loggUser.translateMessages);
@@ -15,7 +17,7 @@ function MyConfig({onClose}){
 
     const updateProfile = ()=>{
 
-        axios.post(`${serverUrl}/auth/UpdateMyConfig`, {translateTo,translateMessages} , {withCredentials: true}).then(onClose());
+        axios.post(`${serverUrl}/auth/UpdateMyConfig`, {translateTo,translateMessages} , {withCredentials: true}).then(()=>{onClose();dispatch(UserDataApi.util.invalidateTags(['resetUser']))});
 
     }
     console.log(translateMessages);
