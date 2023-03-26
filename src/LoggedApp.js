@@ -1,5 +1,6 @@
 import { useGetLoggUserDataQuery } from './store/index';
 import { Outlet } from "react-router-dom";
+import LoadingSvg from './svg/loading-svg'
 
 function LoggedApp(){
     const {data,isLoading} = useGetLoggUserDataQuery();
@@ -8,7 +9,7 @@ function LoggedApp(){
         <Outlet />
         </>
     }else if(isLoading===true){
-        return "Loading"
+        return <LoadingSvg type="cubes"/>
     }
     
 }

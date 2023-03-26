@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useLoggUser } from '../hooks/useLoggUser';
 import { useDispatch } from 'react-redux';
 import { initialSetRooms } from '../store';
+import LoadingSvg from '../svg/loading-svg';
 
 function MainPage(){
     const serverUrl = useSelector((state)=> state.serverUrl);
@@ -26,7 +27,7 @@ function MainPage(){
 
         
     if(rooms.loading===true){
-        return 'Loading'
+        return <LoadingSvg type="cubes"/>
     }else{
       return <div className="flex">
         <SideBarUsers rooms={rooms.rooms}/>
