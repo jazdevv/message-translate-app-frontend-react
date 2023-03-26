@@ -65,7 +65,7 @@ function ConversationChat({socket}){
                       {/* <circle cx="8" cy="8" r="8" fill="currentColor"></circle> */}
                    </svg>
                 </span>
-             <img src={`https://messaging-app-images.s3.eu-west-3.amazonaws.com/${conversationDetails.profileImage}`} alt="" className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"/>
+             <img src={`https://messaging-app-images.s3.eu-west-3.amazonaws.com/${conversationDetails.profileImage}`} alt="" className="w-10 sm:w-16 h-10 sm:h-16 rounded-full object-cover"/>
              </div>
              <div className="flex flex-col leading-tight">
                 <div className="text-2xl mt-1 flex items-center">
