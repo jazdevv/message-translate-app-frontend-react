@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 const UserDataApi = createApi({
     reducerPath:"UserData",
-    baseQuery:fetchBaseQuery({baseUrl:'http://127.0.0.1:3001',credentials:"include"}),
+    baseQuery:fetchBaseQuery({baseUrl:'/apinode',credentials:"include"}),
     endpoints: (builder)=>({
         getLoggUserData: builder.query({
             query:()=>'/auth/me',

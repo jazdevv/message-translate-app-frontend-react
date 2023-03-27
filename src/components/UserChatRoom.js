@@ -5,8 +5,9 @@ import io from 'socket.io-client';
 import ConversationChat from "./Chat";
 
 
-const socket = io("ws://127.0.0.1:3001",{
+const socket = io("/",{
     withCredentials: true,
+    path:'/apinodews'
 });
 
 
@@ -31,6 +32,7 @@ function Chat(){
     useEffect(()=>{
         //join the room
         socket.emit("joinroom",{otheruser:parseInt(userid),roomid:parseInt(roomid)})
+        setChatRoomid(roomid);
 
     },[userid,roomid]);
     
@@ -40,7 +42,7 @@ function Chat(){
         //SUCCES
         socket.on("resjoinroom",(data)=>{
             setAllowed(data.valid);
-            setChatRoomid(data.roomid);
+            // setChatRoomid(data.roomid);
             
         })   
         //FAIL
