@@ -6,8 +6,7 @@ import ConversationChat from "./Chat";
 
 
 const socket = io("/",{
-    withCredentials: true,
-    path:'/apinodews'
+    withCredentials: true
 });
 
 
@@ -32,7 +31,7 @@ function Chat(){
     useEffect(()=>{
         //join the room
         socket.emit("joinroom",{otheruser:parseInt(userid),roomid:parseInt(roomid)})
-        setChatRoomid(roomid);
+        //setChatRoomid(roomid);
 
     },[userid,roomid]);
     
@@ -41,8 +40,9 @@ function Chat(){
         
         //SUCCES
         socket.on("resjoinroom",(data)=>{
+            console.log('joined room',data)
             setAllowed(data.valid);
-            // setChatRoomid(data.roomid);
+            setChatRoomid(data.roomid);
             
         })   
         //FAIL
